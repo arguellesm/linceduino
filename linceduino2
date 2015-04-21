@@ -42,6 +42,7 @@ nvueltas++;
 tiempovuelta=millis()-tiempopaso;//tiempo por vuelta
 tiempopaso=millis();//tiempo desde que se produjo la interrupcion
 velocidad=(TWO_PI*radio*3.6)/tiempovuelta; // (km/h), [mm/ms*3,6 para pasar a km/h]
+velocidadm=(TWO_PI*radio*3.6*nvueltas)/(millis() - tiempo1); 
 distancia=(nvueltas*TWO_PI*radio)/1000000; //distancia total (km)
 vueltas= int((distancia)/1.626)+1; // el circuito tiene 1626 m= 1.626 Km
 //solo guarda en buffer y por tanto guarda en fichero cuando si se ha pulsado el boton select
@@ -117,8 +118,6 @@ if (nvueltas==1) {tiempo1=millis();}
 if (lineasBuffer >= REFRESCO_SD) {Serial.print (buffer);lineasBuffer = 0;buffer="";}
 
 //if (lineasBuffer >= REFRESCO_SD) {guardadatos();}
-
-velocidadm=(TWO_PI*radio*3.6*nvueltas)/(millis() - tiempo1);
 
 lcd.setCursor(0,0);
 
